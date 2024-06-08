@@ -3,15 +3,17 @@ import Image from "next/image";
 
 function Header() {
 	return (
-		<div className="flex">
+		<div className="flex items-center pl-2 pt-2 pb-2">
 			<Image
 				src="../front_logo.svg"
 				width={22}
 				height={22}
 				alt="logo"
 			></Image>
-			<h1>Front·Desk</h1>
-			<span>
+			<h1 className="font-display font-bold text-2xl leading-6 ml-2">
+				Front·Desk
+			</h1>
+			<span className="flex cursor-pointer ml-auto items-center">
 				<svg
 					width={16}
 					height={16}

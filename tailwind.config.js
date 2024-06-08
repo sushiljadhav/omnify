@@ -16,12 +16,28 @@ module.exports = {
 		colors: {
 			primary: "#F8FAFC",
 			secondary: "#FFFFFF",
+			textColor: "#334155",
+			textSecondaryColor: "#0F172A",
+			textThirdColor: "#64748B",
+			boxColor: "#F1F5F9",
 		},
 		screens: {
 			sm: "480px",
 			md: "768px",
 			lg: "976px",
 			xl: "1440px",
+		},
+		fontFamily: {
+			body: ["var(--font-geist-sans)"],
+			display: "var(--body-font)",
+		},
+		fontSize: {
+			xxs: ["10px", "16px"],
+			xs: ["12px", "20px"],
+			sm: ["14px", "20px"],
+			base: ["16px", "24px"],
+			lg: ["20px", "28px"],
+			xl: ["24px", "32px"],
 		},
 	},
 	plugins: [],

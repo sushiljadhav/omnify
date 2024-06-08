@@ -1,4 +1,12 @@
 import { GeistSans } from "geist/font/sans";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+	variable: "--display-font",
+	subsets: ["latin"],
+	weight: ["400", "500", "700"],
+});
+
 import "./globals.css";
 
 export const metadata = {
@@ -9,7 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className={`${GeistSans.className} bg-primary`}>
+			<body
+				className={`${GeistSans.className} ${poppins.className} bg-primary`}
+			>
 				{children}
 			</body>
 		</html>
