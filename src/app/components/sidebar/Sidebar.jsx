@@ -51,6 +51,7 @@ function Sidebar() {
 						src={"./url-icon.svg"}
 						width={16}
 						height={16}
+						alt="Url Icon"
 					></Image>
 				</div>
 				<Bottom isOpen={isOpen} />

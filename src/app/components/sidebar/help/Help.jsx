@@ -14,6 +14,7 @@ function Help({ isOpen }) {
 					className="flex mr-2"
 					width={16}
 					height={16}
+					alt="Help Icon"
 				></Image>
 			</div>
 			{isOpen ? (

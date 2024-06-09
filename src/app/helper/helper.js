@@ -7,8 +7,8 @@ export const getTime = () => {
 		"Mar",
 		"Apr",
 		"May",
-		"June",
-		"July",
+		"Jun",
+		"Jul",
 		"Aug",
 		"Sep",
 		"Oct",
@@ -26,7 +26,6 @@ export const getTime = () => {
 	const month = _months[dates.getMonth()];
 	UTC = dates.toString().match(/([A-Z]+[\+-][0-9]+)/)[1];
 	UTC = UTC.replace("GMT", "");
-	console.log("UTC", UTC);
 	outputDay = `${day} ${date} ${month}`;
 	return {
 		time,

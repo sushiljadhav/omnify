@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
 	content: [
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -21,6 +22,11 @@ module.exports = {
 			textThirdColor: "#64748B",
 			boxColor: "#F1F5F9",
 			headTextColor: "#262626",
+			inputColor: "#94A3B8",
+			tableBorderColor: "#E2E8F0",
+			checkBoxBorderColor: "E5E7EB",
+			tableDataColor: "#374151",
+			rowBorderColor: "#EBEEF0",
 		},
 		screens: {
 			sm: "480px",
@@ -42,6 +48,12 @@ module.exports = {
 			md: ["18px", "24px"],
 			lg: ["20px", "28px"],
 			xl: ["24px", "32px"],
+		},
+		boxShadow: {
+			smStrong:
+				"0px 1px 2px -1px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(16, 24, 40, 0.1)",
+			checkBoxShadow:
+				"0px 1px 2px 0px #64748B1A, 0px 1px 1px 0px #64748B0F",
 		},
 	},
 	plugins: [],

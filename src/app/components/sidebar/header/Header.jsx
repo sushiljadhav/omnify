@@ -8,7 +8,11 @@ function Header({ isOpen, onSideBarToggle }) {
 	};
 
 	return (
-		<div className="flex items-center pl-2 pt-2 pb-2">
+		<div
+			className={`flex items-center pl-2 pt-2 pb-2 ${
+				!isOpen ? "justify-center" : ""
+			}`}
+		>
 			<Image
 				src="../front_logo.svg"
 				width={22}
