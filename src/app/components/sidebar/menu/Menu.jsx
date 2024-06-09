@@ -20,25 +20,29 @@ const Menus = [
 	},
 ];
 
-function Menu() {
+function Menu({ isOpen }) {
 	return (
 		<ul className="flex flex-col min-h-[431px]">
 			{Menus.map((menu) => {
 				return (
 					<li
 						key={menu.name}
-						className="flex items-center py-1.5 px-2 mb-[2px] cursor-pointer hover:bg-secondary hover:border-b-1 hover:rounded-md"
+						className={`${
+							!isOpen ? "justify-center px-4 py-2" : "py-1.5 px-2"
+						} flex items-center mb-[2px] cursor-pointer hover:bg-secondary hover:border-b-1 hover:rounded-md`}
 					>
 						<Image
-							className="flex mr-2"
+							className={`flex ${isOpen ? "mr-2" : ""}`}
 							src={menu.icon}
 							width={16}
 							height={16}
 							alt={menu.name}
 						></Image>
-						<h6 className="text-textColor font-medium text-xs capitalize">
-							{menu.name}
-						</h6>
+						{isOpen ? (
+							<h6 className="text-textColor font-medium text-xs capitalize">
+								{menu.name}
+							</h6>
+						) : null}
 					</li>
 				);
 			})}

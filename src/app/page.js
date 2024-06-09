@@ -5,9 +5,7 @@ export default function Home() {
 	return (
 		<>
 			<main className="flex h-screen">
-				<div className="w-[228px]">
-					<Sidebar />
-				</div>
+				<Sidebar />
 				<div className="flex-1">
 					<Dashboard />
 				</div>
