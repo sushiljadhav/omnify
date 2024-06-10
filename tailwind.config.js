@@ -20,6 +20,7 @@ module.exports = {
 			textColor: "#334155",
 			textSecondaryColor: "#0F172A",
 			textThirdColor: "#64748B",
+			textFourthColor: "#18181B",
 			boxColor: "#F1F5F9",
 			headTextColor: "#262626",
 			inputColor: "#94A3B8",
