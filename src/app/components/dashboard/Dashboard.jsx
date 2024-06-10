@@ -16,7 +16,7 @@ function Dashboard() {
 	};
 
 	return (
-		<div className="bg-secondary min-h-screen pt-3.5 px-4 pb-6 shadow-sm rounded-md m-2 mr-0">
+		<div className="bg-secondary min-h-screen pt-3.5 px-4 shadow-sm rounded-md m-2 mr-0">
 			<h3 className="py-3.5 mb-3 font-semibold text-textColor text-lg">
 				Waitlist
 			</h3>

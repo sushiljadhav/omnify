@@ -1,10 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 
+const colors = require("tailwindcss/colors");
+
 module.exports = {
 	content: [
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+		"./node_modules/tailwind-datepicker-react/dist/**/*.js",
 	],
 	theme: {
 		extend: {
@@ -15,6 +18,12 @@ module.exports = {
 			},
 		},
 		colors: {
+			...colors,
+			stone: colors.warmGray,
+			sky: colors.lightBlue,
+			neutral: colors.trueGray,
+			gray: colors.coolGray,
+			slate: colors.blueGray,
 			primary: "#F8FAFC",
 			secondary: "#FFFFFF",
 			textColor: "#334155",
@@ -28,6 +37,8 @@ module.exports = {
 			checkBoxBorderColor: "E5E7EB",
 			tableDataColor: "#374151",
 			rowBorderColor: "#EBEEF0",
+			filterBoxBorder: "#E4E4E7",
+			dateColor: "#475569",
 		},
 		screens: {
 			sm: "480px",
@@ -51,10 +62,14 @@ module.exports = {
 			xl: ["24px", "32px"],
 		},
 		boxShadow: {
+			xs: "0px 1px 2px rgba(16, 24, 40, 0.05)",
+			btnShadow: " 0px 1px 2px rgba(16, 24, 40, 0.05)",
 			smStrong:
 				"0px 1px 2px -1px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(16, 24, 40, 0.1)",
 			checkBoxShadow:
 				"0px 1px 2px 0px #64748B1A, 0px 1px 1px 0px #64748B0F",
+			filterBox: "0px 1px 2px 0px #1018280D",
+			xxl: "0px 25px 25px 0px #64748B26",
 		},
 	},
 	plugins: [],

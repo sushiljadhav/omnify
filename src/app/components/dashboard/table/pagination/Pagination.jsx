@@ -20,7 +20,7 @@ function Pagination() {
 					return (
 						<li
 							key={item}
-							className="text-textThirdColor text-sm font-normal mb-1 hover:bg-primary w-full flex justify-between"
+							className="text-textThirdColor text-sm font-normal mb-1 hover:bg-primary w-full flex justify-center"
 							onClick={() => displayNumberHandler(item)}
 						>
 							{item}
@@ -45,7 +45,7 @@ function Pagination() {
 				{title === "Previous" ? (
 					<Image
 						src={`../${arrow}.svg`}
-						alt="{title}"
+						alt={title}
 						width={16}
 						height={16}
 						className="flex items-center cursor-pointer mr-2"

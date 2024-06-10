@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import FilterButton from "../../common/filterbutton/FilterButton";
 import SearchBar from "../../common/searchbar/SearchBar";
 import FunctionalButtons from "../../common/functionalbuttons/FunctionalButtons";
+import FilterBox from "../../common/filterbox/FilterBox";
 
 function FilterRow({ onSearchQuery }) {
 	const [whichButton, setWhichButton] = useState("");
@@ -16,9 +17,10 @@ function FilterRow({ onSearchQuery }) {
 	};
 
 	return (
-		<div className="flex items-center justify-between mb-3 pb-3">
+		<div className="flex items-center justify-between mb-3 pb-3 relative">
 			<div className="max-w-[102px] w-full">
 				<FilterButton></FilterButton>
+				<FilterBox />
 			</div>
 			<div className="flex items-center max-w-[386px] w-full ml-auto gap-4">
 				<SearchBar onSearchQuery={onSearchQuery} />

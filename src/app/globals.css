@@ -6,4 +6,41 @@
 	.text-balance {
 		text-wrap: balance;
 	}
+
+	.calendarBox {
+		top: 32px;
+		padding: 12px;
+		box-shadow: 0px 1px 3px 0px #1018281a, 0px 1px 2px -1px #0000001a;
+		background-color: #fff;
+		border-radius: 6px;
+	}
+
+	.calendarBox button {
+		padding: 0;
+	}
+
+	.calendarBox img {
+		margin-right: 0 !important;
+	}
+
+	.calendarBox button:nth-child(2) {
+		padding: 0 10px;
+	}
+}
+
+.filter-box::-webkit-scrollbar {
+	width: 8px;
+}
+
+.filter-box::-webkit-scrollbar-track {
+	background: #fff;
+}
+
+.filter-box::-webkit-scrollbar-thumb {
+	background: #e2e8f0;
+	border-radius: 8px;
+}
+
+.filter-box::-webkit-scrollbar-thumb:hover {
+	background: #e2e8f0;
 }
