@@ -1,6 +1,14 @@
+import { useState } from "react";
 import Icon from "../icon/Icon";
 
-function DropDownList({ lists }) {
+function DropDownList({ lists, onDropDownChanges }) {
+	const [activeFilter, setActiveFilter] = useState("");
+
+	const onDropDownOptionChange = (option) => {
+		onDropDownChanges(option);
+		setActiveFilter(option.key);
+	};
+
 	return (
 		<div className="overflow-auto h-[232px] filter-box">
 			<ul className="flex flex-col justify-center items-center">
@@ -8,12 +16,23 @@ function DropDownList({ lists }) {
 					return (
 						<li
 							key={index}
-							className="flex justify-between items-center px-2 py-1.5 w-full cursor-pointer hover:bg-tableBorderColor "
+							className={`flex justify-between items-center px-2 py-1.5 w-full cursor-pointer hover:bg-tableBorderColor ${
+								items.key === activeFilter
+									? "bg-tableBorderColor"
+									: "hover:bg-tableBorderColor"
+							}`}
+							onClick={() => {
+								onDropDownOptionChange(items);
+							}}
 						>
 							<span className="font-normal text-sm text-textColor">
 								{items.name}
 							</span>
-							<Icon src={"check"}></Icon>
+							{items.key === activeFilter ? (
+								<Icon src={"check"} />
+							) : (
+								""
+							)}
 						</li>
 					);
 				})}

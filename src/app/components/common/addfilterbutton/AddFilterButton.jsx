@@ -1,8 +1,15 @@
 import Image from "next/image";
 
-const FilterButton = () => {
+const FilterButton = ({ isFilterShow, onFilterShowHandler }) => {
+	const filterShowHandler = () => {
+		onFilterShowHandler(!isFilterShow);
+	};
+
 	return (
-		<button className="flex items-center py-1.5 px-3 gap-1.5 bg-boxColor rounded-md cursor-pointer">
+		<button
+			className="flex items-center py-1.5 px-3 gap-1.5 bg-boxColor rounded-md cursor-pointer"
+			onClick={filterShowHandler}
+		>
 			<Image
 				className="flex items-center"
 				src={"../filter.svg"}

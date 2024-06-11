@@ -6,7 +6,7 @@ import ServicesFilter from "./servicefilter/ServicesFilter";
 import FilterButtons from "./filterbuttons/FilterButtons";
 
 function FilterBox() {
-	const [showScheduleFilter, setScheduleFilter] = useState(false);
+	const [showScheduleFilter, setScheduleFilter] = useState(true);
 	const [showClientFilter, setClientFilter] = useState(false);
 	const [showServicesFilter, setServicesFilter] = useState(true);
 

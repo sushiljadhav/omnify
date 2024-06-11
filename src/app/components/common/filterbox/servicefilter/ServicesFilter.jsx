@@ -6,9 +6,11 @@ import ClientLists from "../../clientlists/ClientLists";
 
 function ServicesFilter() {
 	const [showServicesByName, setShowServicesByName] = useState(false);
-	const [showServicesByTag, setShowServicesByTag] = useState(true);
+	const [showServicesByTag, setShowServicesByTag] = useState(false);
+
 	const [showServiceTypeDropDown, setShowServiceTypeDropDown] =
 		useState(false);
+
 	const [showServiceStatusDropDown, setShowServiceStatusDropDown] =
 		useState(false);
 
@@ -44,21 +46,25 @@ function ServicesFilter() {
 						<span className="text-xs text-textColor font-medium mb-1.5 inline-block">
 							Service type
 						</span>
-						<DropDownBox
-							selected={"All time"}
-							options={ServicesType}
-							placeholder={"Select service type"}
-						></DropDownBox>
+						{showServiceTypeDropDown ? (
+							<DropDownBox
+								selected={"All time"}
+								options={ServicesType}
+								placeholder={"Select service type"}
+							></DropDownBox>
+						) : null}
 					</div>
 					<div className="flex flex-col gap-1">
 						<span className="text-xs text-textColor font-medium mb-1.5 inline-block">
 							Status
 						</span>
-						<DropDownBox
-							selected={"ServicesStatus"}
-							options={ServicesStatus}
-							placeholder={"Select service status"}
-						></DropDownBox>
+						{showServiceStatusDropDown ? (
+							<DropDownBox
+								selected={"ServicesStatus"}
+								options={ServicesStatus}
+								placeholder={"Select service status"}
+							></DropDownBox>
+						) : null}
 					</div>
 
 					<div>

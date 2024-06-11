@@ -29,6 +29,7 @@ function Table({ data }) {
 		/** slice the rows from the table data */
 		const startPoint = (currentPage - 1) * displayPageNumber;
 		const endPoint = startPoint + displayPageNumber;
+		console.log("startPoint, endPoint", startPoint, endPoint);
 		const table = data.rows.slice(startPoint, endPoint);
 		setTableData({ ...data, rows: table });
 	}, [displayPageNumber, data, currentPage]);

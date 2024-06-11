@@ -9,6 +9,7 @@ const TableHeader = ({ columns }) => {
 			style={{
 				borderBottomColor: "#EBEEF0",
 			}}
+			key={"item"}
 		>
 			<th scope="col" className="py-2 pl-4 pr-2" key="table-header">
 				<CheckBox></CheckBox>

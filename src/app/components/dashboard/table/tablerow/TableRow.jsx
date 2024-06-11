@@ -1,7 +1,6 @@
 import React from "react";
 import CheckBox from "../../../common/checkbox/CheckBox";
 import TableRowData from "./tablerowdata/TableRowData";
-import { watchList } from "../../../../utils/watchlist";
 
 function TableRow({ data }) {
 	return (
