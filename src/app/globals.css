@@ -26,6 +26,30 @@
 	.calendarBox button:nth-child(2) {
 		padding: 0 10px;
 	}
+
+	.custom-radio {
+		background-color: #fff; /* Replace with your desired color */
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		width: 1rem;
+		height: 1rem;
+		border-radius: 50%;
+		display: inline-block;
+		position: relative;
+	}
+	.custom-radio:checked::before {
+		content: "";
+		display: block;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: #000; /* Inner circle color */
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 }
 
 .filter-box::-webkit-scrollbar {

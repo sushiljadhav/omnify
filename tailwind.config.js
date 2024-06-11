@@ -39,6 +39,7 @@ module.exports = {
 			rowBorderColor: "#EBEEF0",
 			filterBoxBorder: "#E4E4E7",
 			dateColor: "#475569",
+			radio: "#000000",
 		},
 		screens: {
 			sm: "480px",
@@ -70,6 +71,7 @@ module.exports = {
 				"0px 1px 2px 0px #64748B1A, 0px 1px 1px 0px #64748B0F",
 			filterBox: "0px 1px 2px 0px #1018280D",
 			xxl: "0px 25px 25px 0px #64748B26",
+			columnBox: "0px 10px 8px 0px #64748B0A, 0px 4px 4px 0px #64748B1A",
 		},
 	},
 	plugins: [],
