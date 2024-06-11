@@ -38,7 +38,7 @@ function FilterRow({ onSearchQuery }) {
 						title={"columns"}
 						url={"columns-icon"}
 					/>
-					<ColumnBox></ColumnBox>
+					{/* <ColumnBox></ColumnBox> */}
 				</div>
 				<div>
 					<FunctionalButtons

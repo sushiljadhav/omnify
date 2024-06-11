@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Summary from "./summary/Summary";
 import FilterRow from "./filterrow/FilterRow";
 import Table from "./table/Table";
+import { watchList } from "@/app/utils/watchlist";
 
 function Dashboard() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -22,7 +23,7 @@ function Dashboard() {
 			</h3>
 			<Summary />
 			<FilterRow onSearchQuery={searchQueryHandler}></FilterRow>
-			<Table />
+			<Table data={watchList} />
 		</div>
 	);
 }

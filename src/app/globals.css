@@ -50,6 +50,11 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 	}
+
+	.active-page-button {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+	}
 }
 
 .filter-box::-webkit-scrollbar {

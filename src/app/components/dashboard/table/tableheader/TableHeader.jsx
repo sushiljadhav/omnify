@@ -2,7 +2,7 @@ import { tableHeaderData } from "../../../../utils/tableHeaderData";
 import TableHeaderData from "./tableheaderdata/TableHeaderData";
 import CheckBox from "../../../common/checkbox/CheckBox";
 
-const TableHeader = () => {
+const TableHeader = ({ columns }) => {
 	return (
 		<tr
 			className="border-b"
@@ -10,11 +10,11 @@ const TableHeader = () => {
 				borderBottomColor: "#EBEEF0",
 			}}
 		>
-			<th scope="col" className="py-2 pl-4 pr-2">
+			<th scope="col" className="py-2 pl-4 pr-2" key="table-header">
 				<CheckBox></CheckBox>
 			</th>
-			{tableHeaderData.map((header) => {
-				return <TableHeaderData key={header.name} header={header} />;
+			{columns.map((column) => {
+				return <TableHeaderData key={column.name} column={column} />;
 			})}
 		</tr>
 	);

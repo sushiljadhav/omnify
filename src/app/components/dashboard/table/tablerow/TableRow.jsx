@@ -3,12 +3,12 @@ import CheckBox from "../../../common/checkbox/CheckBox";
 import TableRowData from "./tablerowdata/TableRowData";
 import { watchList } from "../../../../utils/watchlist";
 
-function TableRow() {
+function TableRow({ data }) {
 	return (
 		<>
-			{watchList.map((user) => (
+			{data.rows.map((row, rowIndex) => (
 				<tr
-					key={user.payer}
+					key={rowIndex}
 					className="bg-white border-b"
 					style={{
 						borderBottomColor: "#EBEEF0",
@@ -17,7 +17,14 @@ function TableRow() {
 					<td scope="col" className="py-2 pl-4 pr-2">
 						<CheckBox />
 					</td>
-					<TableRowData user={user} />
+					{data.headers.map((header, colIndex) => (
+						<>
+							<TableRowData
+								row={row[header.key]}
+								index={colIndex}
+							/>
+						</>
+					))}
 				</tr>
 			))}
 		</>
