@@ -3,9 +3,11 @@ import RadioFilter from "../../radiofilter/RadioFilter";
 import DropDownBox from "../../dropdownbox/DropDownBox";
 import { ServicesStatus, ServicesType } from "../../../../utils/servicesType";
 import ClientLists from "../../clientlists/ClientLists";
+import FilterSearch from "../../filtersearch/FilterSearch";
 
 function ServicesFilter() {
-	const [showServicesByName, setShowServicesByName] = useState(false);
+	const [selectedRadio, setSelectedRadio] = useState("byName");
+	const [showServicesByName, setShowServicesByName] = useState(true);
 	const [showServicesByTag, setShowServicesByTag] = useState(false);
 
 	const [showServiceTypeDropDown, setShowServiceTypeDropDown] =
@@ -14,6 +16,13 @@ function ServicesFilter() {
 	const [showServiceStatusDropDown, setShowServiceStatusDropDown] =
 		useState(false);
 
+	const handleRadioChange = (event) => {
+		const { id } = event.target;
+		setSelectedRadio(id);
+		setShowServicesByName(id === "byName");
+		setShowServicesByTag(id === "byTags");
+	};
+
 	return (
 		<div className="flex flex-col gap-5">
 			<div className="flex items-center justify-between flex-row gap-6">
@@ -21,11 +30,15 @@ function ServicesFilter() {
 					label={"Search by name"}
 					radioType={"byName"}
 					name={"services"}
+					checked={selectedRadio === "byName"}
+					onChange={handleRadioChange}
 				/>
 				<RadioFilter
 					label={"Search by tags"}
 					radioType={"byTags"}
 					name={"services"}
+					checked={selectedRadio === "byTags"}
+					onChange={handleRadioChange}
 				/>
 			</div>
 			{showServicesByName ? (
@@ -34,9 +47,7 @@ function ServicesFilter() {
 						placeholder={"Search service name"}
 						searchType={"serviceSearch"}
 					/>
-					<div>
-						<ClientLists />
-					</div>
+					<div>{/* <ClientLists /> */}</div>
 				</>
 			) : null}
 
@@ -46,30 +57,26 @@ function ServicesFilter() {
 						<span className="text-xs text-textColor font-medium mb-1.5 inline-block">
 							Service type
 						</span>
-						{showServiceTypeDropDown ? (
-							<DropDownBox
-								selected={"All time"}
-								options={ServicesType}
-								placeholder={"Select service type"}
-							></DropDownBox>
-						) : null}
+						<DropDownBox
+							selected={"All time"}
+							options={ServicesType}
+							placeholder={"Select service type"}
+						></DropDownBox>
 					</div>
 					<div className="flex flex-col gap-1">
 						<span className="text-xs text-textColor font-medium mb-1.5 inline-block">
 							Status
 						</span>
-						{showServiceStatusDropDown ? (
-							<DropDownBox
-								selected={"ServicesStatus"}
-								options={ServicesStatus}
-								placeholder={"Select service status"}
-							></DropDownBox>
-						) : null}
+						<DropDownBox
+							selected={"ServicesStatus"}
+							options={ServicesStatus}
+							placeholder={"Select service status"}
+						></DropDownBox>
 					</div>
 
-					<div>
+					{/* <div>
 						<ClientLists />
-					</div>
+					</div> */}
 				</div>
 			) : null}
 		</div>

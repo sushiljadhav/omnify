@@ -1,32 +1,13 @@
 import React, { useState } from "react";
 import Icon from "../icon/Icon";
+import { filterList } from "@/app/utils/filters";
 
-const filterList = [
-	{
-		name: "Scheduled Date",
-		key: "scheduledDate",
-		icon: "calendar-filter",
-		isActive: true,
-	},
-	{
-		name: "People",
-		key: "people",
-		icon: "users",
-		isActive: false,
-	},
-	{
-		name: "Services / Products",
-		key: "servicesProducts",
-		icon: "layout-dashboard",
-		isActive: false,
-	},
-];
-
-function Filters() {
+function Filters({ onFilterChange }) {
 	const [activeFilter, setActiveFilter] = useState("scheduledDate");
 
 	const listClickHandler = (activeItemKey) => {
 		setActiveFilter(activeItemKey);
+		onFilterChange(activeItemKey);
 	};
 
 	const List = () => {

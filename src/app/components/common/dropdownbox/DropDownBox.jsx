@@ -9,6 +9,10 @@ function DropDownBox({ options, selected, placeholder, onDropDownChanges }) {
 		setShowDropDown(!showDropDown);
 	};
 
+	const dropDownCloseHandler = (closeSelect) => {
+		setShowDropDown(closeSelect);
+	};
+
 	return (
 		<div
 			className="border shadow-filterBox bg-secondary py-2 px-3 relative rounded-md mb-0"
@@ -31,6 +35,8 @@ function DropDownBox({ options, selected, placeholder, onDropDownChanges }) {
 				<SelectOption
 					options={options}
 					onDropDownChanges={onDropDownChanges}
+					selected={selected}
+					onDropDownCloseHandler={dropDownCloseHandler}
 				/>
 			) : null}
 		</div>

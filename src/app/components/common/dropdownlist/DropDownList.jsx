@@ -1,12 +1,18 @@
 import { useState } from "react";
 import Icon from "../icon/Icon";
 
-function DropDownList({ lists, onDropDownChanges }) {
-	const [activeFilter, setActiveFilter] = useState("");
+function DropDownList({
+	lists,
+	onDropDownChanges,
+	selected,
+	onDropDownCloseHandler,
+}) {
+	const [activeFilter, setActiveFilter] = useState(selected);
 
 	const onDropDownOptionChange = (option) => {
 		onDropDownChanges(option);
 		setActiveFilter(option.key);
+		onDropDownCloseHandler(false);
 	};
 
 	return (

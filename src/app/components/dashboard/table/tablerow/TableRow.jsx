@@ -21,6 +21,7 @@ function TableRow({ data }) {
 							<TableRowData
 								row={row[header.key]}
 								index={colIndex}
+								key={colIndex}
 							/>
 						</>
 					))}

@@ -1,13 +1,15 @@
 import React from "react";
 
-function RadioFilter({ label, radioType, name }) {
+function RadioFilter({ label, radioType, name, checked, onChange }) {
 	return (
 		<div className="flex max-w-[158px] w-full items-center">
 			<input
 				type="radio"
 				name={name ? name : "radioDefault"}
 				id={radioType}
-				className="w-4 h-4 border custom-radio  border-tableBorderColor mr-2 focus:ring-radio"
+				className="w-4 h-4 border custom-radio border-tableBorderColor mr-2 focus:ring-radio"
+				checked={checked}
+				onChange={onChange}
 			/>
 			<label
 				htmlFor={radioType}

@@ -1,42 +1,38 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Datepicker from "tailwind-datepicker-react";
 import Icon from "../icon/Icon";
 
-function DateUI({ options, title }) {
-	const [showFrom, setFromShow] = useState(false);
-	const [showTo, setToShow] = useState(false);
+function DateUI({
+	options,
+	title,
+	handleChange,
+	value,
+	disabled,
+	show,
+	setShow,
+}) {
+	const [selectedDate, setSelectedDate] = useState(value);
 
-	const [selectedFromDate, setSelectedFromDate] = useState(undefined);
-	const [selectedToDate, setSelectedToDate] = useState(undefined);
-
-	const handleFromChange = (selectedDate) => {
+	const onHandleChange = (selectedDate) => {
 		const dateObj = new Date(selectedDate);
 		const formattedDate = dateObj.toLocaleDateString("en-US", {
 			month: "short",
 			day: "2-digit",
 			year: "numeric",
 		});
-		setSelectedFromDate(formattedDate);
+		setSelectedDate(formattedDate);
+		handleChange(formattedDate);
+		setShow(false);
 	};
 
-	const handleToChange = (selectedDate) => {
-		const dateObj = new Date(selectedDate);
-		const formattedDate = dateObj.toLocaleDateString("en-US", {
-			month: "short",
-			day: "2-digit",
-			year: "numeric",
-		});
-		setSelectedToDate(formattedDate);
+	const handleClose = (state) => {
+		setShow(state);
 	};
 
-	const handleFromClose = (state) => {
-		setFromShow(state);
-	};
-
-	const handleToClose = (state) => {
-		setToShow(state);
-	};
+	useEffect(() => {
+		setSelectedDate(value);
+	}, [value]);
 
 	return (
 		<div className="flex flex-col gap-1.5 max-w-[163px]">
@@ -44,12 +40,14 @@ function DateUI({ options, title }) {
 			<div className="relative">
 				<Datepicker
 					options={options}
-					onChange={handleFromChange}
-					show={showFrom}
-					setShow={handleFromClose}
+					onChange={onHandleChange}
+					show={show}
+					setShow={handleClose}
 				>
 					<div
-						className="flex items-center min-h-8 shadow-xs border rounded-md px-4 relative pl-10"
+						className={`flex items-center min-h-8 shadow-xs border rounded-md px-4 relative pl-10 ${
+							disabled ? "opacity-75 pointer-events-none" : ""
+						}`}
 						style={{
 							borderColor: "#E2E8F0",
 						}}
@@ -61,9 +59,10 @@ function DateUI({ options, title }) {
 							type="text"
 							className="max-w-[107px] w-full text-sm font-normal text-dateColor cursor-pointer"
 							placeholder="Pick a date"
-							value={selectedFromDate}
-							onFocus={() => setFromShow(true)}
+							value={selectedDate}
+							onFocus={() => setShow(true)}
 							readOnly
+							disabled={disabled}
 						/>
 					</div>
 				</Datepicker>

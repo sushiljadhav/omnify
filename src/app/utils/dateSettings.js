@@ -6,7 +6,7 @@ export const optionsFrom = {
 	clearBtn: false,
 	clearBtnText: "Clear",
 	maxDate: new Date("2030-01-01"),
-	minDate: new Date("1950-01-01"),
+	minDate: new Date("2000-01-01"),
 	theme: {
 		background: "bg-secondary p-0",
 		todayBtn: "",
@@ -43,7 +43,7 @@ export const optionsTo = {
 	clearBtn: false,
 	clearBtnText: "Clear",
 	maxDate: new Date("2030-01-01"),
-	minDate: new Date("1950-01-01"),
+	minDate: new Date("2000-01-01"),
 	theme: {
 		background: "bg-secondary p-0",
 		todayBtn: "",
