@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { FiltersContext } from "../../../context/filtersContext";
 
-function ClientLists({ lists, searchTerms }) {
+function ClientLists({ lists, searchTerms, keyElement }) {
 	const { filters, setFilters } = useContext(FiltersContext);
 
 	const handleCheckboxChange = (client) => {
 		setFilters((prevFilters) => {
-			const updatedPayerData = prevFilters.payerData.includes(client)
-				? prevFilters.payerData.filter((item) => item !== client)
-				: [...prevFilters.payerData, client];
+			const updatedPayerData = prevFilters[keyElement].includes(client)
+				? prevFilters[keyElement].filter((item) => item !== client)
+				: [...prevFilters[keyElement], client];
 
-			return { ...prevFilters, payerData: updatedPayerData };
+			return { ...prevFilters, [keyElement]: updatedPayerData };
 		});
 	};
 
@@ -21,15 +21,26 @@ function ClientLists({ lists, searchTerms }) {
 					type="checkbox"
 					name="client"
 					className="w-3.5 h-3.5 border border-gray-200"
-					checked={filters.payerData.includes(list)}
-					onChange={() => handleCheckboxChange(list)}
+					checked={filters[keyElement].includes(
+						list.name ? list.name : list
+					)}
+					onChange={() =>
+						handleCheckboxChange(list.name ? list.name : list)
+					}
 				/>
 				<p className="text-sm font-normal text-tableDataColor">
-					{list}
+					{list.name ? list.name : list}
 				</p>
-				<p className="px-2 py-0.5 bg-primary text-xxs text-textColor rounded">
-					Payer
-				</p>
+				{list.type && (
+					<p className="px-2 py-0.5 bg-primary text-xxs text-textColor rounded">
+						{list.type}
+					</p>
+				)}
+				{list.status && (
+					<p className="px-2 py-0.5 bg-primary text-xxs text-textColor rounded">
+						{list.status}
+					</p>
+				)}
 			</li>
 		));
 	};

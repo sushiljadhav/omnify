@@ -29,4 +29,16 @@ export const selectedFilters = {
 		to: "",
 	},
 	payerData: [],
+	servicesNames: [],
+	servicesByTagName: {
+		serviceType: {
+			name: "",
+			key: "",
+		},
+		serviceStatus: {
+			name: "",
+			key: "",
+		},
+	},
+	columns: [],
 };

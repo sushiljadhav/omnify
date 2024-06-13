@@ -6,11 +6,15 @@ import ServicesFilter from "./servicefilter/ServicesFilter";
 import FilterButtons from "./filterbuttons/FilterButtons";
 import { filterList } from "@/app/utils/filters";
 
-function FilterBox() {
+function FilterBox({ onButtonClick }) {
 	const [showScheduleFilter, setScheduleFilter] = useState(true);
 	const [showClientFilter, setClientFilter] = useState(false);
 	const [showServicesFilter, setServicesFilter] = useState(false);
 	const [activeFilter, setActiveFilter] = useState("");
+
+	const onButtonHandler = (buttonName) => {
+		onButtonClick(buttonName);
+	};
 
 	const filterChangeHandler = (selectedFilter) => {
 		setActiveFilter(selectedFilter);
@@ -53,7 +57,7 @@ function FilterBox() {
 					{showServicesFilter ? <ServicesFilter /> : null}
 				</div>
 			</div>
-			<FilterButtons></FilterButtons>
+			<FilterButtons onWhichButtonClick={onButtonHandler}></FilterButtons>
 		</div>
 	);
 }

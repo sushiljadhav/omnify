@@ -44,6 +44,8 @@ function ClientsFilter() {
 		setDisplayedList(payer);
 	};
 
+	console.log("payer", filters);
+
 	return (
 		<div className="flex flex-col gap-3">
 			<FilterSearch
@@ -52,7 +54,11 @@ function ClientsFilter() {
 				onSearch={onSearchHandler}
 			/>
 			<div>
-				<ClientLists lists={displayedList} searchTerms={searchTerm} />
+				<ClientLists
+					lists={displayedList}
+					searchTerms={searchTerm}
+					keyElement="payerData"
+				/>
 			</div>
 		</div>
 	);

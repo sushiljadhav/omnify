@@ -1,4 +1,4 @@
-const serviceTypeMapping = {
+export const serviceTypeMapping = {
 	"Private Language Session": "General items",
 	"Swim beginner for class new Session": "Class",
 	"Fitness Session": "Facility",
@@ -11,7 +11,7 @@ const serviceTypeMapping = {
 	// Add more mappings as needed
 };
 
-const serviceTypeToStatusMapping = {
+export const serviceTypeToStatusMapping = {
 	"Show all service type": "Show all",
 	Class: "Public",
 	Appointment: "Private",

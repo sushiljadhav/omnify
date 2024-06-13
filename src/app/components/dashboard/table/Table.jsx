@@ -4,7 +4,7 @@ import TableRow from "./tablerow/TableRow";
 import Pagination from "./pagination/Pagination";
 
 function Table({ data }) {
-	const totalCount = data.rows.length;
+	const totalCount = data?.rows?.length;
 	const [tableData, setTableData] = useState(data);
 	const [tableHeaderColumn, setTableHeaderColumn] = useState([{}]);
 	const [displayPageNumber, setDisplayPageNumber] = useState(15);
@@ -21,7 +21,7 @@ function Table({ data }) {
 
 	useEffect(() => {
 		/** Get the table Header from table Data */
-		const columns = data.headers.map((item) => item);
+		const columns = data?.headers?.map((item) => item);
 		setTableHeaderColumn(columns);
 	}, [data]);
 

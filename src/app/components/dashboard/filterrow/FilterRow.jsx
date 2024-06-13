@@ -6,9 +6,15 @@ import FunctionalButtons from "../../common/functionalbuttons/FunctionalButtons"
 import FilterBox from "../../common/filterbox/FilterBox";
 import ColumnBox from "../../common/columnbox/ColumnBox";
 
-function FilterRow({ onSearchQuery }) {
+function FilterRow({
+	onSearchQuery,
+	tableHeader,
+	onTableColumnChange,
+	onButtonClick,
+}) {
 	const [whichButton, setWhichButton] = useState("");
 	const [showFilter, setShowFilter] = useState(false);
+	const [showColumnBox, setShowColumnBox] = useState(false);
 
 	const showFilterHandler = (isShow) => {
 		setShowFilter(isShow);
@@ -18,8 +24,11 @@ function FilterRow({ onSearchQuery }) {
 	 * check which functional button click by user
 	 * @param {download | refresh | columns} button
 	 */
-	const functionalButtonHandler = (button) => {
-		setWhichButton(button);
+	const functionalButtonHandler = (buttonType) => {
+		setWhichButton(buttonType);
+		if (buttonType === "columns") {
+			setShowColumnBox((prevState) => !prevState);
+		}
 	};
 
 	return (
@@ -29,7 +38,9 @@ function FilterRow({ onSearchQuery }) {
 					isFilterShow={showFilter}
 					onFilterShowHandler={showFilterHandler}
 				></AddFilterButton>
-				{showFilter ? <FilterBox /> : null}
+				{showFilter ? (
+					<FilterBox onButtonClick={onButtonClick} />
+				) : null}
 			</div>
 			<div className="flex items-center max-w-[386px] w-full ml-auto gap-4">
 				<SearchBar onSearchQuery={onSearchQuery} />
@@ -46,7 +57,12 @@ function FilterRow({ onSearchQuery }) {
 						title={"columns"}
 						url={"columns-icon"}
 					/>
-					{/* <ColumnBox></ColumnBox> */}
+					{showColumnBox && (
+						<ColumnBox
+							columns={tableHeader}
+							onTableColumnChange={onTableColumnChange}
+						></ColumnBox>
+					)}
 				</div>
 				<div>
 					<FunctionalButtons
