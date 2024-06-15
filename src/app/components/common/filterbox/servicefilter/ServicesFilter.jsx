@@ -136,7 +136,7 @@ function ServicesFilter() {
 			});
 			setDisplayedList(updatedService);
 		}
-	}, [filters.servicesNames, searchTerm]);
+	}, [filters.servicesNames, searchTerm, filters]);
 
 	useEffect(() => {
 		setFilters((prevFilters) => ({
@@ -192,7 +192,7 @@ function ServicesFilter() {
 							Service type
 						</span>
 						<DropDownBox
-							selected={servicesType.key || "all"}
+							selected={servicesType.key || ""}
 							placeholder={
 								servicesType.name || "Select service type"
 							}
@@ -205,7 +205,7 @@ function ServicesFilter() {
 							Status
 						</span>
 						<DropDownBox
-							selected={servicesStatus.key || "all"}
+							selected={servicesStatus.key || ""}
 							placeholder={
 								servicesStatus.name || "Select service status"
 							}

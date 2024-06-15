@@ -1,5 +1,5 @@
 export const getTime = () => {
-	const _days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Friday", "Sat"];
+	const _days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 	let time, UTC, outputDay;
 	const _months = [
 		"Jan",

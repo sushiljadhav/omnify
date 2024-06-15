@@ -5,12 +5,14 @@ import FilterRow from "./filterrow/FilterRow";
 import Table from "./table/Table";
 import { watchList } from "@/app/utils/watchlist";
 import { FiltersContext } from "@/app/context/filtersContext";
+import { selectedFilters } from "@/app/utils/filters";
 
 function Dashboard() {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [watchListData, setWatchListData] = useState(watchList);
 	const [debounceTimeout, setDebounceTimeout] = useState(null);
 	const { filters, setFilters } = useContext(FiltersContext);
+	const [filteredData, setFilteredData] = useState([]);
 
 	/**
 	 * bind the user input query
@@ -71,87 +73,153 @@ function Dashboard() {
 	};
 
 	const payerFilter = () => {
+		const payerNamesFilter = filters.payerData;
+
+		if (payerNamesFilter.length === 0) {
+			return [];
+		}
+
 		const filteredRows = watchListData.rows.filter((row) => {
-			// Example filtering condition based on payer data
-			return filters.payerData.includes(row.payer);
+			return (
+				payerNamesFilter.length === 0 ||
+				payerNamesFilter.includes(row.payer)
+			);
 		});
 		console.log("Payer Filtered Data:", filteredRows);
-		return filteredRows; // Return true if the row passes all filters
+		return filteredRows;
 	};
 
-	const schedule = () => {
-		const filteredData = watchListData.rows.filter((row) => {
-			// Filter based on schedule
-			const fromDate = new Date(filters.schedule.from);
-			const toDate = new Date(filters.schedule.to);
+	const scheduleFilter = (payerFilteredRows) => {
+		const fromDate = new Date(filters.schedule.from);
+		const toDate = new Date(filters.schedule.to);
 
-			if (fromDate && toDate) {
-				const rowDataDate = new Date(row.schedule); // Assuming 'date' is the key for date in row object
+		if (!fromDate || !toDate) {
+			return payerFilteredRows; // If dates are not set, return payer filtered rows
+		}
 
-				return rowDataDate >= fromDate && rowDataDate <= toDate;
-			}
+		const filteredRows = payerFilteredRows.filter((row) => {
+			const rowDataDate = new Date(row.schedule); // Assuming 'schedule' is the key for date in row object
+			return rowDataDate >= fromDate && rowDataDate <= toDate;
+		});
+		console.log("Schedule Filtered Data:", filteredRows);
+		return filteredRows;
+	};
 
-			return true; // Return true to include all rows if dates are not set in the filter
+	const servicesNameFilter = () => {
+		const servicesFilter = filters.servicesNames;
+
+		// Check if servicesFilter is empty
+		if (servicesFilter.length === 0) {
+			return [];
+		}
+
+		const filteredRows = watchListData.rows.filter((row) => {
+			return servicesFilter.includes(row.services);
 		});
 
-		return filteredData;
+		console.log("Services Name Filtered Data:", filteredRows);
+		return filteredRows;
 	};
 
-	const servicesName = () => {
-		const filteredData = watchListData.rows.filter((row) => {
-			// Filter based on servicesNames
-			const servicesFilter = filters.servicesNames;
+	const servicesByTagFilter = () => {
+		const serviceTypeFilter =
+			filters.servicesByTagName.serviceType.name.toLowerCase();
+		const serviceStatusFilter =
+			filters.servicesByTagName.serviceStatus.name.toLowerCase();
 
-			if (servicesFilter.length > 0) {
-				return servicesFilter.includes(row.serviceName); // Assuming 'serviceName' is the key for service name in row object
-			}
+		// Check if both serviceType and serviceStatus filters are empty
+		if (!serviceTypeFilter && !serviceStatusFilter) {
+			return [];
+		}
 
-			return true; // Return true to include all rows if servicesNames filter is not set
-		});
-
-		return filteredData;
-	};
-
-	const servicesByTag = () => {
-		const filteredData = watchListData.rows.filter((row) => {
-			// Filter based on servicesByTagName
-			const serviceTypeFilter = filters.servicesByTagName.serviceType;
-			const serviceStatusFilter = filters.servicesByTagName.serviceStatus;
-
-			// Check if both serviceType and serviceStatus filters are set
-			if (serviceTypeFilter.key && serviceStatusFilter.key) {
+		const filteredRows = watchListData.rows.filter((row) => {
+			const rowServiceType = row.servicesType.toLowerCase();
+			const rowStatus = row.serviceStatus.toLowerCase();
+			if (serviceTypeFilter && serviceStatusFilter) {
 				return (
-					row.servicesType === serviceTypeFilter.key &&
-					row.serviceStatus === serviceStatusFilter.key
+					rowServiceType === serviceTypeFilter &&
+					rowStatus === serviceStatusFilter
 				);
 			}
 
-			// Check if only serviceType filter is set
-			if (serviceTypeFilter.key) {
-				return row.servicesType === serviceTypeFilter.key;
+			if (serviceTypeFilter) {
+				return rowServiceType === serviceTypeFilter;
 			}
 
-			// Check if only serviceStatus filter is set
-			if (serviceStatusFilter.key) {
-				return row.serviceStatus === serviceStatusFilter.key;
+			if (serviceStatusFilter) {
+				return rowStatus === serviceStatusFilter;
 			}
 
-			return true; // Return true to include all rows if no serviceType or serviceStatus filter is set
+			return true;
 		});
 
-		return filteredData;
+		console.log("Services By Tag Filtered Data:", filteredRows);
+		return filteredRows;
 	};
 
 	/** on Reset or Apply button Click */
 
 	const onButtonClick = (whichButton) => {
 		if (whichButton === "apply") {
-			const payerData = payerFilter();
-			const scheduledDate = schedule();
-			const services = servicesName();
-			const servicesByTagName = servicesByTag();
+			let filteredRows = payerFilter();
 
-			console.log("Final Filtered Rows:", finalFilteredRows);
+			if (filteredRows.length === 0) {
+				console.log(
+					"No rows matched payer filter. Checking other filters..."
+				);
+
+				const scheduleFilteredRows = scheduleFilter(watchListData.rows);
+				if (scheduleFilteredRows.length > 0) {
+					filteredRows = scheduleFilteredRows;
+					setFilteredData(filteredRows);
+				} else {
+					const servicesNameFilteredRows = servicesNameFilter(
+						watchListData.rows
+					);
+					if (servicesNameFilteredRows.length > 0) {
+						filteredRows = servicesNameFilteredRows;
+						setFilteredData(filteredRows);
+					} else {
+						const servicesByTagFilteredRows = servicesByTagFilter(
+							watchListData.rows
+						);
+						if (servicesByTagFilteredRows.length > 0) {
+							filteredRows = servicesByTagFilteredRows;
+							setFilteredData(filteredRows);
+						}
+					}
+				}
+			} else {
+				let combinedFilteredRows = filteredRows;
+				combinedFilteredRows = scheduleFilter(combinedFilteredRows);
+				combinedFilteredRows = servicesNameFilter(combinedFilteredRows);
+				const servicesFilteredRows =
+					servicesNameFilter(combinedFilteredRows);
+
+				if (servicesFilteredRows.length > 0) {
+					combinedFilteredRows =
+						servicesByTagFilter(servicesFilteredRows); // Apply services by tag filter
+					if (combinedFilteredRows.length > 0) {
+						combinedFilteredRows = combinedFilteredRows;
+					} else {
+						combinedFilteredRows = servicesFilteredRows;
+					}
+				} else {
+					combinedFilteredRows =
+						servicesByTagFilter(combinedFilteredRows);
+				}
+
+				if (combinedFilteredRows.length > 0) {
+					filteredRows = combinedFilteredRows;
+				}
+
+				console.log("Final Filtered Rows:", filteredRows);
+
+				setFilteredData(filteredRows);
+			}
+		} else {
+			setFilteredData([]);
+			setFilters(selectedFilters);
 		}
 	};
 
@@ -164,8 +232,8 @@ function Dashboard() {
 	}, [debounceTimeout]);
 
 	return (
-		<div className="bg-secondary min-h-screen pt-3.5 px-4 shadow-sm rounded-md m-2 mr-0">
-			<h3 className="py-3.5 mb-3 font-semibold text-textColor text-lg">
+		<div className="bg-secondary min-h-screen pt-3.5shadow-sm rounded-md m-2 mr-0">
+			<h3 className="py-3.5 mb-3 font-semibold text-textColor text-lg px-4">
 				Waitlist
 			</h3>
 			<Summary />
@@ -174,6 +242,7 @@ function Dashboard() {
 				tableHeader={watchList?.headers}
 				onTableColumnChange={columnHandler}
 				onButtonClick={onButtonClick}
+				filteredChips={filteredData}
 			></FilterRow>
 			<Table data={watchListData} />
 		</div>

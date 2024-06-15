@@ -36,7 +36,7 @@ function Table({ data }) {
 
 	return (
 		<>
-			<div className="relative overflow-x-auto border border-tableBorderColor rounded-md mt-3 h-[480px]">
+			<div className="relative overflow-x-auto border mx-4 border-tableBorderColor rounded-md mt-3 h-[480px] table-overflow">
 				<table className="w-full text-sm text-left rtl:text-right table-auto">
 					<thead className="bg-primary text-xs text-textThirdColor font-medium">
 						<TableHeader columns={tableHeaderColumn}></TableHeader>

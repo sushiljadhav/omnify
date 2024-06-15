@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body
-				className={`${GeistSans.className} ${poppins.variable} ${Helvetica_Neue_Medium.variable} ${Helvetica_Neue_Bold.variable} bg-primary`}
+				className={`box-border ${GeistSans.className} ${poppins.variable} ${Helvetica_Neue_Medium.variable} ${Helvetica_Neue_Bold.variable} bg-primary`}
 			>
 				{children}
 			</body>

@@ -57,19 +57,33 @@
 	}
 }
 
-.filter-box::-webkit-scrollbar {
+.filter-box::-webkit-scrollbar,
+.chips-list::-webkit-scrollbar,
+.table-overflow::-webkit-scrollbar {
 	width: 8px;
+	height: 8px;
 }
 
-.filter-box::-webkit-scrollbar-track {
+.chips-list::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+
+.filter-box::-webkit-scrollbar-track,
+.chips-list::-webkit-scrollbar-track,
+.table-overflow::-webkit-scrollbar-track {
 	background: #fff;
 }
 
-.filter-box::-webkit-scrollbar-thumb {
+.filter-box::-webkit-scrollbar-thumb,
+.chips-list::-webkit-scrollbar-thumb,
+.table-overflow::-webkit-scrollbar-thumb {
 	background: #e2e8f0;
 	border-radius: 8px;
 }
 
-.filter-box::-webkit-scrollbar-thumb:hover {
+.filter-box::-webkit-scrollbar-thumb:hover,
+.chips-list::-webkit-scrollbar-thumb:hover,
+.table-overflow::-webkit-scrollbar-thumb:hover {
 	background: #e2e8f0;
 }

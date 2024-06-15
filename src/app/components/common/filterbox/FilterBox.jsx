@@ -41,8 +41,8 @@ function FilterBox({ onButtonClick }) {
 	};
 
 	return (
-		<div className="w-[612px] min-h-[400px] rounded-md bg-secondary absolute left-0 top-[47px] z-30 shadow-xxl">
-			<div className="flex flex-row min-h-[344px]">
+		<div className="max-w-[612px]  w-full min-h-[400px] rounded-md bg-secondary absolute left-0 top-[47px] z-30 shadow-xxl">
+			<div className="flex flex-row min-h-[344px] lg:flex-col">
 				<div
 					className="max-w-[230px] w-full flex flex-col p-2 bg-primary border-r"
 					style={{

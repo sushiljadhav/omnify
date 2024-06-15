@@ -6,10 +6,12 @@ import { FiltersProvider } from "../app/context/filtersContext";
 export default function Home() {
 	return (
 		<FiltersProvider>
-			<main className="flex h-screen">
-				<Sidebar />
-				<div className="flex-1">
-					<Dashboard />
+			<main>
+				<div className="flex h-screen">
+					<Sidebar />
+					<div className="flex-1 w-full ">
+						<Dashboard />
+					</div>
 				</div>
 			</main>
 		</FiltersProvider>

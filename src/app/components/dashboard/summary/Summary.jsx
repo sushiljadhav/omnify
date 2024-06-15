@@ -20,7 +20,7 @@ function Summary() {
 	};
 
 	return (
-		<div className="flex items-center gap-[15px] mb-4">
+		<div className="flex items-center gap-[15px] mb-4 px-4 flex-wrap">
 			<SummaryBoxUI title={"All Waitlists"} total={100} isActive={true} />
 			<SummaryBoxUI title={"Newly Added"} total={50} isActive={false} />
 			<SummaryBoxUI title={"Leads"} total={20} isActive={false} />

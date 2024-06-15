@@ -75,7 +75,7 @@ function Pagination({ total, onDisplayPageNumberChange, onPageNumberHandler }) {
 	const PageNumber = ({ number }) => {
 		return (
 			<button
-				className={`max-w-8 min-h-8 w-full flex items-center justify-center text-textColor font-medium text-xs cursor-pointer hover:bg-secondary hover:border rounded-md border-tableBorderColor ${
+				className={`max-w-8 px-4 min-h-8 w-full flex items-center justify-center text-textColor font-medium text-xs cursor-pointer hover:bg-secondary hover:border rounded-md border-tableBorderColor ${
 					currentPage === number
 						? "bg-secondary active-page-button"
 						: ""
@@ -122,7 +122,7 @@ function Pagination({ total, onDisplayPageNumberChange, onPageNumberHandler }) {
 	};
 
 	return (
-		<div className="flex items-center justify-between py-3">
+		<div className="flex items-center justify-between py-3 px-4 ">
 			<div className="flex items-center max-w-[205px] w-full">
 				<span className="text-textThirdColor text-sm font-normal">
 					Displaying

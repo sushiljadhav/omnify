@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./header/Header";
 import Location from "./location/Location";
 import Menu from "./menu/Menu";
@@ -14,14 +14,28 @@ function Sidebar() {
 		setIsOpen(newState);
 	};
 
+	function windowResize() {
+		if (window.innerWidth <= 1280) {
+			setIsOpen(false);
+		}
+	}
+
+	useEffect(() => {
+		window.addEventListener("resize", windowResize);
+
+		return () => {
+			window.removeEventListener("resize", windowResize);
+		};
+	}, []);
+
 	return (
-		<div className={`${isOpen ? "w-[228px]" : "w-16"}`}>
+		<div className={`${isOpen ? "w-[228px]" : "w-16"}bg-secondary`}>
 			<div
 				className={`${
 					isOpen
-						? "max-w-[212px] pt-3 pb-2 ml-auto"
-						: "max-w-16 px-2 pt-[13px]"
-				} mr-auto w-full`}
+						? "w-[212px] pt-3 pb-2 ml-auto"
+						: "w-16 px-2 pt-[13px]"
+				} mr-auto`}
 			>
 				<Header isOpen={isOpen} onSideBarToggle={handleSideBarToggle} />
 				<Location isOpen={isOpen} />
